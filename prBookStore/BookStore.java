@@ -49,7 +49,7 @@ public class BookStore {
 		return "[ " + ss + " ]";
 	}
 
-	private void addBook(Book book) {
+	protected void addBook(Book book) {
 		int position = seekBook(book.getAuthor(), book.getTitle());
 		if (position == -1) {
 			if (numBooks == books.length) {
@@ -62,10 +62,8 @@ public class BookStore {
 	}
 
 	private void deleteBook(int position) {
-		for (int pos = position; pos < numBooks - 1; pos++) {
-			books[pos] = books[pos + 1];
-		}
-		books[--numBooks] = null;
+			books[position] = books[numBooks - 1];
+		numBooks--;
 	}
 
 	private int seekBook(String author, String title) {
